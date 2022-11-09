@@ -40,8 +40,7 @@ pipeline {
         stage('Deploy Docker Image') {
             agent { label 'DEV' }
             steps { 
-                sh "sudo docker stop springbootapp && sudo docker rm springbootapp"
-                sh "sudo docker run --rm -dit --name springbootapp -p 8080:8080 sreeharshav/devopsb28spring:$BUILD_NUMBER"
+                sh "sudo docker stop springbootapp || sudo docker run --rm -dit --name springbootapp -p 8080:8080 sreeharshav/devopsb28spring:$BUILD_NUMBER"
             }
         }
     }
