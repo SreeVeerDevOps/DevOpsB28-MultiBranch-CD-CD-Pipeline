@@ -31,6 +31,19 @@ pipeline {
                 sh "mvn package"
             }
         }
+        stage('docker build') {
+            agent { label 'DEV' }
+            steps { 
+                sh "docker build -t sreeharshav/devopsb28spring:$BUILD_NUMBER ."
+            }
+        }
+        stage('Deploy Docker Image') {
+            agent { label 'DEV' }
+            steps { 
+                sh "docker stop springbootapp && docker rm springbootapp"
+                sh "docker run --rm -dit --name springbootapp -p 8080:8080 sreeharshav/devopsb28spring:$BUILD_NUMBER"
+            }
+        }
     }
 }
 
