@@ -31,6 +31,21 @@ pipeline {
                 sh "mvn package"
             }
         }
+        stage('mvn install') {
+            agent { label 'DEV' }
+            steps { 
+                sh "mvn install"
+            }
+        }
+        stage('Sonarqube SAST') {
+            agent { label 'DEV' }
+            steps { 
+                sh "mvn clean verify sonar:sonar \
+                    -Dsonar.projectKey=spring-boot-app \
+                    -Dsonar.host.url=http://ec2-3-216-31-149.compute-1.amazonaws.com:9000 \
+                    -Dsonar.login=sqp_4b2278067e758dcc87471e99af4fb3cb5a3c2333"
+            }
+        }
         stage('docker build') {
             agent { label 'DEV' }
             steps { 
