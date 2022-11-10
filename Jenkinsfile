@@ -2,6 +2,11 @@
 def VERSION='1.0.0'
 pipeline {
     agent none
+    tools {
+	maven 'apache-maven-3.6.0'
+    jdk 'jdk_1.8.0_151'
+    jdk 'jdk_1.6.0_45'
+    }
     environment {
         PROJECT = "WELCOME TO DEVOPS B28 BATCH - Jenkins Class"
     }
