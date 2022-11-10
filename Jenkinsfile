@@ -3,9 +3,7 @@ def VERSION='1.0.0'
 pipeline {
     agent none
     tools {
-	maven 'apache-maven-3.6.0'
-    jdk 'jdk_1.8.0_151'
-    jdk 'jdk_1.6.0_45'
+	maven 'apache-maven-3.6.3'
     }
     environment {
         PROJECT = "WELCOME TO DEVOPS B28 BATCH - Jenkins Class"
@@ -81,6 +79,18 @@ pipeline {
             }
         }
     }
+    post {
+    success {
+        echo "The Pipeline Executed Sucessfully."
+    }
+    failure {
+        echo "The Pipeline Execution Failed."
+    }
+    always {
+        echo "I always run."
+    }
+    }
+
 }
 
 
