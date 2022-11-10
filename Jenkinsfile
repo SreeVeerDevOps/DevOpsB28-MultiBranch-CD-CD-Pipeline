@@ -57,6 +57,11 @@ pipeline {
 
             }
         }
+        stage("Quality gate") {
+            steps {
+                waitForQualityGate abortPipeline: true
+            }
+        }
         stage('docker build') {
             agent { label 'DEV' }
             steps { 
