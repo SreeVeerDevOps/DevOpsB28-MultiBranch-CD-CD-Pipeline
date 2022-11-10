@@ -3,7 +3,7 @@ def VERSION='1.0.0'
 pipeline {
     agent none
     tools {
-	maven 'apache-maven-3.6.3'
+	// maven 'apache-maven-3.6.3'
     }
     environment {
         PROJECT = "WELCOME TO DEVOPS B28 BATCH - Jenkins Class"
