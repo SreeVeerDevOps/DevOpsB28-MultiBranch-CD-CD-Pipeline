@@ -81,16 +81,10 @@ pipeline {
     }
     post {
     success {
-        echo "The Pipeline Executed Sucessfully."
-        steps {
-        slackSend "Build deployed successfully - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
-        }
+        slackSend "Pipeline Completed Sucessfully - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
     }
     failure {
-        echo "The Pipeline Execution Failed."
-        steps {
-        slackSend failOnError:true "Build failed  - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
-        }
+        slackSend failOnError: true, message: "Pipeline Failed: ${env.JOB_NAME} ${env.BUILD_NUMBER}"
     }
     always {
         echo "I always run."
