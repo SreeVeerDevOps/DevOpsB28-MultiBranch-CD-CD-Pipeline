@@ -86,6 +86,9 @@ pipeline {
     failure {
         slackSend color: danger, failOnError: true, message: "SAST Failed: ${env.JOB_NAME} ${env.BUILD_NUMBER}"
     }
+    aborted {
+        slackSend color: danger, failOnError: true, message: "SAST Failed: ${env.JOB_NAME} ${env.BUILD_NUMBER}"
+    }
     always {
         echo "I always run."
     }
