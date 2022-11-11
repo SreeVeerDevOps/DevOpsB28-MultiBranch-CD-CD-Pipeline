@@ -55,7 +55,7 @@ pipeline {
                 withSonarQubeEnv('SonarQube'){
                      sh "mvn sonar:sonar \
                      -Dsonar.projectKey=spring-boot-app \
-                     -Dsonar.host.url=http://ec2-44-200-153-244.compute-1.amazonaws.com/:9000"
+                     -Dsonar.host.url=http://ec2-44-200-153-244.compute-1.amazonaws.com:9000"
                 }
 
             }
