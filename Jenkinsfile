@@ -2,9 +2,9 @@
 def VERSION='1.0.0'
 pipeline {
     agent none
-    tools {
-	// maven 'apache-maven-3.6.3'
-    }
+    // tools {
+	//  maven 'apache-maven-3.6.3'
+    // }
     environment {
         PROJECT = "WELCOME TO DEVOPS B28 BATCH - Jenkins Class"
     }
@@ -82,11 +82,15 @@ pipeline {
     post {
     success {
         echo "The Pipeline Executed Sucessfully."
+        steps {
         slackSend "Build deployed successfully - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
+        }
     }
     failure {
         echo "The Pipeline Execution Failed."
+        steps {
         slackSend failOnError:true "Build failed  - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
+        }
     }
     always {
         echo "I always run."
