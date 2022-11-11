@@ -81,10 +81,10 @@ pipeline {
     }
     post {
     success {
-        slackSend "Pipeline Completed Sucessfully"
+        slackSend(message: "<text>")
     }
     failure {
-        slackSend failOnError: true, message: "Pipeline Failed"
+        slackSend failOnError: true, message: "<text>"
     }
     always {
         echo "I always run."
