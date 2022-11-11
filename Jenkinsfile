@@ -20,6 +20,7 @@ pipeline {
             agent { label 'DEV' }
             steps { 
                 sh "mvn clean"
+                exit 1
             }
         }
         stage('mvn test') {
@@ -81,13 +82,13 @@ pipeline {
     }
     post {
     success {
-        slackSend color: good, message: "Pipeline Successfull: ${env.JOB_NAME} ${env.BUILD_NUMBER}"
+        slackSend(message: "Pipeline Successfull: ${env.JOB_NAME} ${env.BUILD_NUMBER}") 
     }
     failure {
-        slackSend color: danger, failOnError: true, message: "SAST Failed: ${env.JOB_NAME} ${env.BUILD_NUMBER}"
+        slackSend(message: "Pipeline Failed: ${env.JOB_NAME} ${env.BUILD_NUMBER}") 
     }
     aborted {
-        slackSend color: danger, failOnError: true, message: "SAST Failed: ${env.JOB_NAME} ${env.BUILD_NUMBER}"
+        slackSend(message: "Pipeline Aborted: ${env.JOB_NAME} ${env.BUILD_NUMBER}")
     }
     always {
         echo "I always run."
