@@ -81,10 +81,10 @@ pipeline {
     }
     post {
     success {
-        slackSend(message: "<text>")
+        slackSend color: good message: "Pipeline Successfull: ${env.JOB_NAME} ${env.BUILD_NUMBER}"
     }
     failure {
-        slackSend failOnError: true, message: "<text>"
+        slackSend color: danger failOnError: true, message: "SAST Failed: ${env.JOB_NAME} ${env.BUILD_NUMBER}"
     }
     always {
         echo "I always run."
