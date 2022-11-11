@@ -82,10 +82,10 @@ pipeline {
     }
     post {
     success {
-        slackSend(message: "Pipeline Successfull: ${env.JOB_NAME} ${env.BUILD_NUMBER}") 
+        slackSend(message: "Pipeline Successfull: ${env.JOB_NAME} ${env.BUILD_NUMBER} ${env.BUILD_URL}") 
     }
     failure {
-        slackSend(message: "Pipeline Failed: ${env.JOB_NAME} ${env.BUILD_NUMBER}") 
+        slackSend(message: "Pipeline Failed: ${env.JOB_NAME} ${env.BUILD_NUMBER} ${env.BUILD_URL}") 
     }
     aborted {
         slackSend(message: "Pipeline Aborted: ${env.JOB_NAME} ${env.BUILD_NUMBER}")
