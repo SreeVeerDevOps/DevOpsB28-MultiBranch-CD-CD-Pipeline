@@ -20,7 +20,7 @@ pipeline {
             agent { label 'DEV' }
             steps { 
                 sh "mvn clean"
-                // exit 1
+                exit 1
             }
         }
         stage('mvn test') {
