@@ -81,10 +81,10 @@ pipeline {
     }
     post {
     success {
-        slackSend "Pipeline Completed Sucessfully - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
+        slackSend "Pipeline Completed Sucessfully"
     }
     failure {
-        slackSend failOnError: true, message: "Pipeline Failed: ${env.JOB_NAME} ${env.BUILD_NUMBER}"
+        slackSend failOnError: true, message: "Pipeline Failed"
     }
     always {
         echo "I always run."
