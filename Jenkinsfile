@@ -86,7 +86,7 @@ pipeline {
     }
     failure {
         echo "The Pipeline Execution Failed."
-        slackSend failOnError:true message: "Build failed  - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
+        slackSend failOnError:true "Build failed  - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
     }
     always {
         echo "I always run."
